@@ -1,1 +1,5 @@
-console.log("Hello world");
+function fizzBuzz() {
+    console.log("Hello world");
+}
+
+fizzBuzz();

@@ -1,5 +1,7 @@
-function fizzBuzz() {
-    for (let number = 1; number <= 256; number++) {
+import readline from 'readline';
+async function interactiveFizzBuzz() {
+    while (true) {
+        const number = await getUserInputForNumber();
         console.log(getOutputForNumber(number));
     }
 }
@@ -28,8 +30,9 @@ function applySimpleRule(currentOutput, number, divisor, word) {
 
 function bongRule(currentOutput, number) {
     if (number % 11 === 0) {
-        currentOutput.filter(word => word === "Fezz").push("Bong");
-        return currentOutput;
+        const newOutput = currentOutput.filter(word => word === "Fezz")
+        newOutput.push("Bong");
+        return newOutput;
     }
     return currentOutput;
 }
@@ -41,4 +44,17 @@ function reverseRule(currentOutput, number) {
     return currentOutput;
 }
 
-fizzBuzz();
+async function getUserInputForNumber() {
+    return new Promise((resolve) => { 
+        const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+        });
+        rl.question('Enter a number: ', (number) => {
+            rl.close();
+            resolve(parseInt(number));
+        });
+    });
+}
+
+await interactiveFizzBuzz();

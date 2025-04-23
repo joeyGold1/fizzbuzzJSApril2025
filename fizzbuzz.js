@@ -8,6 +8,7 @@ function getOutputForNumber(number) {
     let output = '';
     
     output = applySimpleRule(output, number, 3, 'Fizz');
+    output = applySimpleRule(output, number, 13, 'Fezz');
     output = applySimpleRule(output, number, 5, 'Buzz');
     output = applySimpleRule(output, number, 7, 'Bang');
     output = bongRule(output, number);
@@ -26,7 +27,7 @@ function applySimpleRule(currentOutput, number, divisor, word) {
 
 function bongRule(currentOutput, number) {
     if (number % 11 === 0) {
-        return "Bong";
+        return number % 13 === 0 ? "FezzBong" : "Bong";
     }
     return currentOutput;
 }

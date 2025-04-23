@@ -1,25 +1,34 @@
 function fizzBuzz() {
-    for (let number = 1; number <= 100; number++) {
+    for (let number = 1; number <= 250; number++) {
         console.log(getOutputForNumber(number));
     }
 }
 
 function getOutputForNumber(number) {
     let output = '';
-    output += getAdditionForNumber(number, 3, 'Fizz');
-    output += getAdditionForNumber(number, 5, 'Buzz');
-    output += getAdditionForNumber(number, 7, 'Bang');
+    
+    output = applySimpleRule(output, number, 3, 'Fizz');
+    output = applySimpleRule(output, number, 5, 'Buzz');
+    output = applySimpleRule(output, number, 7, 'Bang');
+    output = bongRule(output, number);
     if (output.length > 0) {
         return output;
     }
     return number;
 }
 
-function getAdditionForNumber(number, divisor, word) {
+function applySimpleRule(currentOutput, number, divisor, word) {
     if (number % divisor === 0) {
-        return word;
+        return currentOutput + word;
     }
-    return '';
+    return currentOutput;
+}
+
+function bongRule(currentOutput, number) {
+    if (number % 11 === 0) {
+        return "Bong";
+    }
+    return currentOutput;
 }
 
 fizzBuzz();
